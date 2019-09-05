@@ -3,26 +3,20 @@ var repository = [];
 var  apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
 function loadList() {
-  return fetch(apiUrl).then(function (response) {
-    return response.json();
-  }).then(function (json) {
-    json.results.forEach(function (item) {
+  return $.ajax(apiUrl, {dataType: 'json'}).then(function(item){
       var pokemon = {
         name: item.name,
         detailsUrl: item.url
-      };
+      }
       add(pokemon);
-    });
   }).catch(function (e) {
     console.error(e);
-  })
+  });
 }
 
 function loadDetails(item) {
   var url = item.detailsUrl;
-  return fetch(url).then(function (response) {
-    return response.json();
-  }).then(function (details) {
+  return $.ajax(url).then(function(details){
     //adding the details to the items...
     item.imageUrl = details.sprites.front_shiny;
     item.height = 'height: ' + details.height;
@@ -39,18 +33,23 @@ function add(pokemon) {
 function getAll() {
   return repository;
 }
+
+var $pokemonList = $('.pokemonList');
+
 function addListItem(pokemon) {
-  var listItem = document.createElement("li");
-  var button = document.createElement("button");
-  button.innerText = pokemon.name;
-  button.classList.add("button-style");
-  listItem.appendChild(button);
-  $element.appendChild(listItem);
-  button.addEventListener("click", function () {
+  var listItem = $('<li><li>'); //document.createElement("li");
+  var button = $('<button class ="button-style">' + pokemon.name +'</button>'); //document.createElement("button");
+  //button.innerText = pokemon.name;
+  //button.classList.add("button-style");
+  listItem.append(button);
+  $pokemonList.append(listItem);
+  button.on("click", () => {
     showDetails(pokemon);
   });
     console.log(pokemon)
 };
+
+//Adding a modal to show details of pokemon
 
 function showDetails(item) {
   pokemonRepository.loadDetails(item).then(function () {
@@ -58,11 +57,9 @@ function showDetails(item) {
   });
 }
 
-//Adding a modal to show details of pokemon
-
 function showModal(item) {
-  var $modalContainer = document.querySelector('#modal-container');
-  $modalContainer.classList.add('is-visible');
+  var $modalContainer = $('#modal-container');
+  $modalContainer.addClass('is-visible');
 }
 
 function showModal(item) {
@@ -86,6 +83,8 @@ function showModal(item) {
   var weightElement = document.createElement('p');
   weightElement.innerText = item.weight;
 
+
+
   //Add button to close Modal
   var closeButtonElement = document.createElement('button');
   closeButtonElement.classList.add('modal-close');
@@ -93,12 +92,12 @@ function showModal(item) {
   closeButtonElement.addEventListener('click', hideModal);
 
 
-  modal.appendChild(closeButtonElement);
-  modal.appendChild(nameElement);
-  modal.appendChild(imgElement);
-  modal.appendChild(heightElement);
-  modal.appendChild(weightElement);
-  $modalContainer.appendChild(modal);
+  modal.append(closeButtonElement);
+  modal.append(nameElement);
+  modal.append(imgElement);
+  modal.append(heightElement);
+  modal.append(weightElement);
+  $modalContainer.append(modal);
 
   $modalContainer.classList.add('is-visible');
   }
@@ -119,8 +118,8 @@ window.addEventListener('keydown', (e) => {
 });
 
 //allows to exit modal when clicked outside of modal.
-var $modalContainer = document.querySelector('#modal-container');
-  $modalContainer.addEventListener('click', (e) => {
+var $modalContainer = $('#modal-container');
+  $modalContainer.on('click', (e) => {
   //Since this is also triggered when clicking inside the modal. We want to close if user clicks directly on the overlay.
   var target = e.target;
   if(target === $modalContainer) {
