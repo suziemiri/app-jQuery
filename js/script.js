@@ -57,7 +57,25 @@ function showDetails(item) {
   });
 }
 
-function showModal(item) {
+function showModal(pokemon) {
+  var modal = $('<div class="modal"></div>');
+  var exist = $modal-container.$('.modal');
+
+  var closeButton = $('<button class="modal-close">Close</button>');
+  closeButton.on('click', hideModal);
+
+  if(exist)$modalContainer.removeChild(exist);
+
+  var nameElement = $('<h1>' + pokemon.nameElement + '</h1>');
+
+  var heightElement = $('<p>Height: ' + pokemon.height + '<p>');
+
+  var weightElement = $('<p>Height: ' + pokemon.weightElement + '<p>');
+
+  var imgElement = $('<img></img>');
+  image.attr('src', pokemon.imageUrl);
+
+/*function showModal(item) {
   var $modalContainer = $('#modal-container');
   $modalContainer.addClass('is-visible');
 }
@@ -90,32 +108,33 @@ function showModal(item) {
   closeButtonElement.classList.add('modal-close');
   closeButtonElement.innerText = 'Close';
   closeButtonElement.addEventListener('click', hideModal);
+  */
 
+modal
+  .append(closeButton)
+  .append(nameElement)
+  .append(imgElement)
+  .append(heightElement)
+  .append(weightElement)
 
-  modal.append(closeButtonElement);
-  modal.append(nameElement);
-  modal.append(imgElement);
-  modal.append(heightElement);
-  modal.append(weightElement);
-  $modalContainer.append(modal);
+  $modalContainer
+  .append(modal)
+  .addClass('is-visible')
 
-  $modalContainer.classList.add('is-visible');
   }
 
 
   //hides modal
     function hideModal() {
-      var $modalContainer = document.querySelector('#modal-container');
-      $modalContainer.classList.remove('is-visible');
+    $modalContainer.removeClass('is-visible');
 }
 
 //allows to exit modal with the Esc button on keyboard.
-window.addEventListener('keydown', (e) => {
-  var $modalContainer = document.querySelector('#modal-container');
-  if (e.key === 'Escape' && $modalContainer.classList.contains('is-visible')) {
+$(window).on('keydown', (e) => {
+  if (e.key === 'Escape' && $modalContainer.hasClass('is-visible')){
     hideModal();
   }
-});
+})
 
 //allows to exit modal when clicked outside of modal.
 var $modalContainer = $('#modal-container');
@@ -141,11 +160,11 @@ return {
 })(); //End IIFE
 
 
-var $element = document.querySelector(".pokemonList")
+//var $element = document.querySelector(".pokemonList")
 
 pokemonRepository.loadList().then(function() {
   pokemonRepository.getAll().forEach(function(pokemon) {
-    pokemonRepository.addListItem(pokemon);
+    addListItem(pokemon);
   });
 });
 
