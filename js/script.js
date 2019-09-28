@@ -3,14 +3,16 @@ var repository = [];
 var  apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
 function loadList() {
-  return $.ajax(apiUrl, {dataType: 'json'}).then(function(item){
+  return $.ajax(apiUrl, {dataType: 'json'}).then(function(data){
+    data.results.forEach(function(item) {
       var pokemon = {
         name: item.name,
         detailsUrl: item.url
       }
       add(pokemon);
-  }).catch(function (e) {
-    console.error(e);
+    }).catch(function (e) {
+      console.error(e);
+    });
   });
 }
 
@@ -162,11 +164,32 @@ return {
 
 //var $element = document.querySelector(".pokemonList")
 
+
+
 pokemonRepository.loadList().then(function() {
   pokemonRepository.getAll().forEach(function(pokemon) {
-    addListItem(pokemon);
+    pokemonRepository.addListItem(pokemon);
   });
 });
+
+
+/*pokemonRepository.addListItem(function(pokemon) {
+  pokemonRepository.loadList().then(function() {
+    pokemonRepository.getAll().forEach(function(pokemon) {
+      addListItem(pokemon);
+    });
+  });
+});
+
+
+/*pokemonRepository.loadList().then(function() {
+  pokemonRepository.addListItem(function(pokemon) {
+    pokemonRepository.getAll().forEach(function(pokemon) {
+      addListItem(pokemon);
+    });
+  });
+});*/
+
 
 
 
