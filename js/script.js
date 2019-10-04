@@ -39,7 +39,7 @@ function getAll() {
 var $pokemonList = $('.pokemonList');
 
 function addListItem(pokemon) {
-  var listItem = $('<li><li>'); //document.createElement("li");
+  var listItem = $('<li></li>'); //document.createElement("li");
   var button = $('<button class ="button-style">' + pokemon.name +'</button>'); //document.createElement("button");
   //button.innerText = pokemon.name;
   //button.classList.add("button-style");
@@ -60,13 +60,14 @@ function showDetails(item) {
 }
 
 function showModal(pokemon) {
+  $('.modal').remove()
   var modal = $('<div class="modal"></div>');
-  var exist = $('.modal');
+
 
   var closeButton = $('<button class="modal-close">Close</button>');
   closeButton.on('click', hideModal);
 
-  if(exist)$modalContainer.remove(exist);
+
 
   var nameElement = $('<h1>' + pokemon.name + '</h1>');
 
@@ -109,7 +110,7 @@ var $modalContainer = $('#modal-container');
   $modalContainer.on('click', (e) => {
   //Since this is also triggered when clicking inside the modal. We want to close if user clicks directly on the overlay.
   var target = e.target;
-  if(target === $modalContainer) {
+  if(target === $modalContainer[0]) {
     hideModal();
   };
 });
