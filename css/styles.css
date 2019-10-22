@@ -6,7 +6,7 @@ h1 {
 
 body {
   text-align: center;
-  background-color: #1C1C1C
+  background-color: #1C1C1C;
 }
 
 html,
@@ -87,4 +87,10 @@ body {
 
 ul {
   list-style: none;
+}
+
+.page-container {
+
+  margin-top: 60px;
+
 }
