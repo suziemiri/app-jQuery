@@ -71,9 +71,9 @@ function showModal(pokemon) {
 
   var nameElement = $('<h1>' + pokemon.name + '</h1>');
 
-  var heightElement = $('<p>Height: ' + pokemon.height + '<p>');
+  var heightElement = $('<p>' + pokemon.height + '<p>');
 
-  var weightElement = $('<p>Height: ' + pokemon.weight + '<p>');
+  var weightElement = $('<p>' + pokemon.weight + '<p>');
 
   var imgElement = $('<img></img>');
   imgElement.attr('src', pokemon.imageUrl);
