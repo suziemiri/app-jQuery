@@ -4,12 +4,12 @@ var  apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
 function loadList() {
   return $.ajax(apiUrl, {dataType: 'json'}).then(function(data){
-    data.results.forEach(function(item) {
+    $.each(data.results, function(index, item) {
       var pokemon = {
         name: item.name,
         detailsUrl: item.url
       }
-      add(pokemon);
+      add(pokemon)
     })
   }).catch(function (e) {
     console.error(e);
@@ -23,7 +23,9 @@ function loadDetails(item) {
     item.imageUrl = details.sprites.front_shiny;
     item.height = 'height: ' + details.height;
     item.weight = 'weight: ' + details.weight;
-    item.types = Object.keys(details.types);
+    item.types = details.types.map(function(pokemon) {
+      return pokemon.type.name;
+    });
   }).catch(function (e) {
     console.error(e);
   });
@@ -40,7 +42,7 @@ var $pokemonList = $('.pokemonList');
 
 function addListItem(pokemon) {
   var listItem = $('<li></li>'); //document.createElement("li");
-  var button = $('<button class ="button-style">' + pokemon.name +'</button>'); //document.createElement("button");
+  var button = $('<button type = "button" class = "button-style">' + pokemon.name +'</button>'); //document.createElement("button");
   //button.innerText = pokemon.name;
   //button.classList.add("button-style");
   listItem.append(button);
@@ -53,9 +55,12 @@ function addListItem(pokemon) {
 
 //Adding a modal to show details of pokemon
 
-function showDetails(item) {
-  pokemonRepository.loadDetails(item).then(function () {
-    showModal(item);
+function showDetails(pokemon) {
+  pokemonRepository.loadDetails(pokemon).then(function () {
+    var modal = $('.modal-body');
+    var name = $('.modal-title').text(pokemon.name);
+    var type = $('.')
+    //showModal(pokemon);
   });
 }
 
