@@ -13,7 +13,7 @@
   <body>
     <!--Navigation bar-->
     <nav class = "navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <a class = "navbar-brand" href = "#">Pokédox with jQuery</a>
+    <a class = "navbar-brand" href = "index.html">Pokédox with jQuery</a>
       <button type = "button" class = "navbar-toggler" data-toggle = "collapse" data-target = "#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class = "navbar-toggler-icon"></span>
       </button>
@@ -24,31 +24,22 @@
           <div class = "lg-form my-0">
             <input class="form-control" id="pokemon-search" type="search" placeholder="Search Pokemon" aria-label="Search">
           </div>
-					  <button href = "#!" class="btn btn-outline-primary btn-md my-0 ml-sm-2" type="submit">Go!</button>
+					  <button class="btn btn-outline-primary btn-md my-0 ml-sm-2" type="submit"> Go! </button>
 				</form>
 			</div>
 		</nav>
-    <div class = "mainContainer">
+    <div class = "mainContainer" id ="list">
        <h1>Pokédox with jQuery</h1>
        <ul class= "pokemonList"></ul>
     </div>
 
-  <div id='modal-container'>
-  <div class='modal'>
-      <button class='modal-close'>Close</button>
-      <h1>Modal title</h1>
-      <p>Modal text</p>
-  </div>
-  </div>
-
-
 
   <div class = "modal fade" id = "pokemon-modal" tabindex = "-1" role = "dialog" aria-labelledby= "pokemon-name" aria-hidden = 'true'>
-    <div class = "modal-dialog" role = "document">
+    <div class = "modal-dialog modal-dialog-centered" role = "document">
       <div class = "modal-content">
         <div class = "modal-header">
-          <h5 class = "modal-title" id = "pokemon-name">Modal Title</h5>
-          <button type ="button" class = "close" data-dismiss = "modal" aria-label = "Close">
+          <h1 class = "modal-title" id = "pokemon-name">Modal Title</h1>
+          <button type ="button" class = "modal-close" data-dismiss = "modal-close" aria-label = "Close">
             <span aria-hidden = "true">&times;</span>
           </button>
         </div>
@@ -56,7 +47,7 @@
           Pokemon
         </div>
         <div class = "modal-footer">
-          <button type = "button" class = "btn btn-secondary" data-dismiss = "modal">Close</button>
+          <button type = "button" class = "btn btn-secondary" data-dismiss = "modal-close" name = "button">Close</button>
         </div>
       </div>
     </div>
@@ -67,7 +58,7 @@
 		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
 		crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="js/script.js"></script>
   </body>
 </html>
