@@ -38,6 +38,8 @@ function getAll() {
   return repository;
 }
 
+
+
 var $pokemonList = $('.pokemonList');
 
 function addListItem(pokemon) {
@@ -57,10 +59,7 @@ function addListItem(pokemon) {
 
 function showDetails(pokemon) {
   pokemonRepository.loadDetails(pokemon).then(function () {
-    var modal = $('.modal-body');
-    var name = $('.modal-title').text(pokemon.name);
-    var type = $('.')
-    //showModal(pokemon);
+    showModal(pokemon);
   });
 }
 
@@ -93,7 +92,7 @@ modal
 
   $modalContainer
   .append(modal)
-  .addClass('is-visible')
+  modal.addClass('show')
 
   }
 
