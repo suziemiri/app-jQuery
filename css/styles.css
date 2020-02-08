@@ -43,50 +43,6 @@ body {
 
 /*CSS for modal container - add your own desired CSS styles here */
 
-.modal {
-  margin: auto;
-  display: inline-block;
-  box-sizing: border-box;
-  background: #fff;
-  padding: 15px;
-  height: 50%;
-  width: 50%;
-  max-width: 700px;
-  text-align: center;
-}
-
-.modal-close {
-  float: right;
-  -webkit-appearance: none;
-  border: 0;
-  background: none;
-  color: #777;
-  text-decoration: underline;
-}
-
-.modal h1 {
-  margin-top: 0;
-}
-
-.modal p {
-  margin-bottom: 0;
-}
-
-.button-style {
-  border: none;
-  font-family: Arial, sans-serif;
-  background-color: red;
-  color: white;
-  text-decoration: none;
-  padding: 10px;
-  margin: 2px;
-  height: 40px;
-  width: 200px;
-  border-radius: 3px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  transition: 0.2s opacity;
-}
-
 ul {
   list-style: none;
 }
@@ -94,5 +50,8 @@ ul {
 .page-container {
 
   margin-top: 60px;
+}
 
+button.button-style {
+  
 }
